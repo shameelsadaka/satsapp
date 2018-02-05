@@ -1,11 +1,12 @@
 import React from 'react';
-import { 
-	StyleSheet, 
-	Text, 
-	View, 
-	Image, 
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
 	ImageBackground,
 	TextInput,
+	StatusBar,
 	TouchableOpacity,
 	KeyboardAvoidingView,
 	AsyncStorage
@@ -37,6 +38,10 @@ export default class Login extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<StatusBar
+					backgroundColor="blue"
+					barStyle="light-content"
+				/>
 				<KeyboardAvoidingView behavior="padding">
 					<ImageBackground source={require('../img/bg.jpg')} style={styles.backgroundImage} >
 						<Image source={require('../img/logo.png')} style={styles.logo} />
@@ -44,9 +49,9 @@ export default class Login extends React.Component {
 						<View style={styles.inputBox} horizontal={true}>
 							<View style={{flex: 1,flexDirection: 'row'}} >
 								<Image source={require('../img/ic_account.png')} style={styles.inputIcon} />
-								<TextInput 
+								<TextInput
 									style={styles.input}
-									ref="username" 
+									ref="username"
 									underlineColorAndroid="transparent"
 									placeholderTextColor="#FFFFFF55"
 									placeholder="Username"
@@ -58,7 +63,7 @@ export default class Login extends React.Component {
 						<View style={styles.inputBox}>
 							<View style={{flex: 1,flexDirection: 'row'}} >
 								<Image source={require('../img/ic_lock.png')} style={styles.inputIcon} />
-								<TextInput 
+								<TextInput
 									style={styles.input}
 									underlineColorAndroid="transparent"
 									placeholder="Password"
@@ -74,7 +79,7 @@ export default class Login extends React.Component {
 							onPress = {this.login}>
 							<Text style={styles.loginButtonText}>LOGIN</Text>
 						</TouchableOpacity>
-					</ImageBackground> 
+					</ImageBackground>
 				</KeyboardAvoidingView>
 			</View>
 		);
@@ -83,11 +88,14 @@ export default class Login extends React.Component {
 	 login = () => {
 	 	if(this.state.username == "admin" && this.state.password == "password")
 	 	{
+	 		this.setState({
+                errorDisplay: ""
+            });
 		 	alert("Working");
 	 	}
 	 	else{
 	 		this.setState({
-                errorDisplay: "Invalid username or password"                
+                errorDisplay: "Invalid username or password"
             });
 	 	}
 	 }
